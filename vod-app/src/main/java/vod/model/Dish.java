@@ -3,25 +3,25 @@ package vod.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Movie {
+public class Dish {
 
     private int id;
     private String title;
     private String poster;//url
-    private Director director;//relacja do rezysera - kolejny obiekt danych w uproszczeniu założenie że jeden film ma 1 reżysera
+    private Chef chef;//relacja do rezysera - kolejny obiekt danych w uproszczeniu założenie że jeden film ma 1 reżysera
     private float rating;//rating
-    private List<Cinema> cinemas = new ArrayList<>();
+    private List<Restaurant> restauracje = new ArrayList<>();
 //relacja wiele do wiele - bidirectional
 
-    public Movie(int id, String title, String poster, Director director, float rating) {
+    public Dish(int id, String title, String poster, Chef chef, float rating) {
         this.id = id;
         this.title = title;
         this.poster = poster;
-        this.director = director;
+        this.chef = chef;
         this.rating = rating;
     }
 
-    public Movie() {
+    public Dish() {
     }
 
     public int getId() {
@@ -48,12 +48,12 @@ public class Movie {
         this.poster = poster;
     }
 
-    public Director getDirector() {
-        return director;
+    public Chef getDirector() {
+        return chef;
     }
 
-    public void setDirector(Director director) {
-        this.director = director;
+    public void setDirector(Chef chef) {
+        this.chef = chef;
     }
 
     public float getRating() {
@@ -64,16 +64,16 @@ public class Movie {
         this.rating = rating;
     }
 
-    public List<Cinema> getCinemas() {
-        return cinemas;
+    public List<Restaurant> getCinemas() {
+        return restauracje;
     }
 
-    public void setCinemas(List<Cinema> cinemas) {
-        this.cinemas = cinemas;
+    public void setCinemas(List<Restaurant> restauracje) {
+        this.restauracje = restauracje;
     }
 
-    public void addCinema(Cinema c) {
-        this.cinemas.add(c);
+    public void addCinema(Restaurant c) {
+        this.restauracje.add(c);
     }
 
 
@@ -82,7 +82,7 @@ public class Movie {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Movie movie = (Movie) o;
+        Dish movie = (Dish) o;
 
         if (id != movie.id) return false;
         if (Float.compare(movie.rating, rating) != 0) return false;
@@ -101,9 +101,9 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie{" +
+        return "Dish{" +
                 "title='" + title + '\'' +
-                ", director=" + director +
+                ", chef=" + chef +
                 ", rating=" + rating +
                 '}';
     }
