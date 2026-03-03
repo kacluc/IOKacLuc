@@ -1,5 +1,7 @@
 package vod.repository.mem;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 import vod.model.Dish;
 import vod.model.Restaurant;
 import vod.repository.RestaurantDao;
@@ -7,7 +9,8 @@ import vod.repository.RestaurantDao;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@Component("restaurantDao")
+@Primary
 public class MemRestaurantDao implements RestaurantDao {
 
     @Override
@@ -21,7 +24,7 @@ public class MemRestaurantDao implements RestaurantDao {
     }
 
     @Override
-    public List<Restaurant> findByMovie(Dish m) {
-        return SampleData.restauracje.stream().filter(c -> c.getMovies().contains(m)).collect(Collectors.toList());
+    public List<Restaurant> findByDish(Dish m) {
+        return SampleData.restauracje.stream().filter(c -> c.getDishes().contains(m)).collect(Collectors.toList());
     }
 }

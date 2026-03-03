@@ -11,6 +11,6 @@ public interface RestaurantDao {
 
     Restaurant findById(int id);
 
-    List<Restaurant> findByMovie(Dish m);
+    List<Restaurant> findByDish(Dish m);
 
 }

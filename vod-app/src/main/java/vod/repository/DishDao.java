@@ -12,9 +12,9 @@ public interface DishDao {
 
     Dish findById(int id);
 
-    List<Dish> findByDirector(Chef d);
+    List<Dish> findByChef(Chef d);
 
-    List<Dish> findByCinema(Restaurant c);
+    List<Dish> findByRestaurant(Restaurant c);
 
     Dish add(Dish m);
 

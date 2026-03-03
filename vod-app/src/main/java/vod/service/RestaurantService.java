@@ -7,12 +7,12 @@ import java.util.List;
 
 public interface RestaurantService {
 //api zwraca nam wszystkie kina
-    Restaurant getCinemaById(int id);
+    Restaurant getRestaurantById(int id);
 
-    List<Restaurant> getAllCinemas();
+    List<Restaurant> getAllRestaurants();
 
-    List<Restaurant> getCinemasByMovie(Dish m);
+    List<Restaurant> getRestaurantByDish(Dish m);
 
-    List<Dish> getMoviesInCinema(Restaurant c);
+    List<Dish> getDishesInRestaurant(Restaurant c);
 
 }

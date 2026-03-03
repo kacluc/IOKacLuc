@@ -1,5 +1,7 @@
 package vod.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import vod.model.Chef;
 import vod.model.Dish;
 import vod.model.Restaurant;
@@ -11,11 +13,19 @@ import vod.service.DishService;
 import java.util.List;
 import java.util.logging.Logger;
 
+@Component
 public class DishServiceBean implements DishService {
 
     private static final Logger log = Logger.getLogger(DishService.class.getName());
 
+    //@Autowired
     private ChefDao chefDao;
+
+    @Autowired
+    public void setChefDao(ChefDao chefDao) {
+        this.chefDao = chefDao;
+    }
+
     private RestaurantDao restaurantDao;
     private DishDao dishDao;
 
@@ -32,12 +42,12 @@ public class DishServiceBean implements DishService {
 
     public List<Dish> getMoviesByDirector(Chef d) {
         log.info("serching movies by diretor " + d.getId());
-        return dishDao.findByDirector(d);
+        return dishDao.findByChef(d);
     }
 
     public List<Dish> getMoviesInCinema(Restaurant c) {
         log.info("searching movies played in cinema " + c.getId());
-        return dishDao.findByCinema(c);
+        return dishDao.findByRestaurant(c);
     }
 
     public Dish getMovieById(int id) {
@@ -52,7 +62,7 @@ public class DishServiceBean implements DishService {
 
     public List<Restaurant> getCinemasByMovie(Dish m) {
         log.info("searching cinemas by movie " + m.getId());
-        return restaurantDao.findByMovie(m);
+        return restaurantDao.findByDish(m);
     }
 
     public Restaurant getCinemaById(int id) {

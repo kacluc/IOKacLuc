@@ -43,7 +43,7 @@ public class Restaurant {
         this.logo = logo;
     }
 
-    public List<Dish> getMovies() {
+    public List<Dish> getDishes() {
         return dishes;
     }
 

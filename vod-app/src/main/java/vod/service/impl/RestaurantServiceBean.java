@@ -1,5 +1,7 @@
 package vod.service.impl;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import vod.model.Restaurant;
 import vod.model.Dish;
 import vod.repository.RestaurantDao;
@@ -9,6 +11,8 @@ import vod.service.RestaurantService;
 import java.util.List;
 import java.util.logging.Logger;
 
+@Component
+@Scope("prototype")
 public class RestaurantServiceBean implements RestaurantService {
 
     private static final Logger log = Logger.getLogger(RestaurantService.class.getName());
@@ -17,33 +21,33 @@ public class RestaurantServiceBean implements RestaurantService {
     private DishDao dishDao;
 
     public RestaurantServiceBean(RestaurantDao restaurantDao, DishDao dishDao) {
-        log.info("creating cinema service bean");
+        log.info("creating Restaurant service bean");
         this.restaurantDao = restaurantDao;
         this.dishDao = dishDao;
     }
 
     @Override
-    public Restaurant getCinemaById(int id) {
+    public Restaurant getRestaurantById(int id) {
         log.info("searching cinema by id " + id);
         return restaurantDao.findById(id);
     }
 
     @Override
-    public List<Dish> getMoviesInCinema(Restaurant c) {
-        log.info("searching movies played in cinema " + c.getId());
-        return dishDao.findByCinema(c);
+    public List<Dish> getDishesInRestaurant(Restaurant c) {
+        log.info("searching dishes served in restaurant " + c.getId());
+        return dishDao.findByRestaurant(c);
     }
 
     @Override
-    public List<Restaurant> getAllCinemas() {
-        log.info("searching all cinemas");
+    public List<Restaurant> getAllRestaurants() {
+        log.info("searching all restaurants");
         return restaurantDao.findAll();
     }
 
     @Override
-    public List<Restaurant> getCinemasByMovie(Dish m) {
-        log.info("searching cinemas by movie " + m.getId());
-        return restaurantDao.findByMovie(m);
+    public List<Restaurant> getRestaurantByDish(Dish m) {
+        log.info("searching restaurants by dish " + m.getId());
+        return restaurantDao.findByDish(m);
     }
 
 }
