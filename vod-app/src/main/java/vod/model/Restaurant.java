@@ -1,5 +1,7 @@
 package vod.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +45,7 @@ public class Restaurant {
         this.logo = logo;
     }
 
+    @JsonIgnore
     public List<Dish> getDishes() {
         return dishes;
     }
