@@ -7,9 +7,19 @@ custom-header: custom-value
 Cookie: some-cookie=some-value
 
 ### get restaurant by id
-GET https://localhost:8080/webapi/restaurants/1
+GET http://localhost:8080/webapi/restaurants/1
 Accept: application/xml
 
 ### get restaurant by Dish
-GET https://localhost:8080/webapi/dishes/1/restaurants
+GET http://localhost:8080/webapi/dishes/1/restaurants
 Accept: application/json
+
+### create restaurant
+POST http://localhost:8080/webapi/restaurants
+Content-Type: application/json
+Accept-Language: en
+
+{
+    "name": "restaurant",
+    "logo": "https://s.tmimgcdn.com/scr/800x500/295300/modern-professional-business-logo-template_295305-original.jpg"
+}
