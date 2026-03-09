@@ -2,6 +2,7 @@ package vod.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import vod.model.Chef;
 import vod.model.Dish;
 import vod.model.Restaurant;
@@ -13,7 +14,7 @@ import vod.service.DishService;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Component
+@Service
 public class DishServiceBean implements DishService {
 
     private static final Logger log = Logger.getLogger(DishService.class.getName());
@@ -35,12 +36,12 @@ public class DishServiceBean implements DishService {
         this.dishDao = dishDao;
     }
 
-    public List<Dish> getAllMovies() {
+    public List<Dish> getAllDishes() {
         log.info("searching all movies...");
         return dishDao.findAll();
     }
 
-    public List<Dish> getMoviesByDirector(Chef d) {
+    public List<Dish> getDishesByChef(Chef d) {
         log.info("serching movies by diretor " + d.getId());
         return dishDao.findByChef(d);
     }
@@ -50,7 +51,7 @@ public class DishServiceBean implements DishService {
         return dishDao.findByRestaurant(c);
     }
 
-    public Dish getMovieById(int id) {
+    public Dish getDishById(int id) {
         log.info("searching movie by id " + id);
         return dishDao.findById(id);
     }
@@ -75,19 +76,19 @@ public class DishServiceBean implements DishService {
         return chefDao.findAll();
     }
 
-    public Chef getDirectorById(int id) {
+    public Chef getChefById(int id) {
         log.info("searching director by id " + id);
         return chefDao.findById(id);
     }
 
     @Override
-    public Dish addMovie(Dish m) {
+    public Dish addDish(Dish m) {
         log.info("about to add movie " + m);
         return dishDao.add(m);
     }
 
     @Override
-    public Chef addDirector(Chef d) {
+    public Chef addChef(Chef d) {
         log.info("about to add director " + d);
         return chefDao.add(d);
     }

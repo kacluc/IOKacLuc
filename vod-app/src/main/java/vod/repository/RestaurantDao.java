@@ -13,4 +13,6 @@ public interface RestaurantDao {
 
     List<Restaurant> findByDish(Dish m);
 
+    Restaurant save(Restaurant restaurant);
+
 }

@@ -23,4 +23,9 @@ public class DummyRestaurantDao  implements RestaurantDao {
     public List<Restaurant> findByDish(Dish m) {
         return List.of();
     }
+
+    @Override
+    public Restaurant save(Restaurant restaurant) {
+        return null;
+    }
 }

@@ -46,21 +46,21 @@ class SampleData {
         bind(essential, skolimowski);
         bind(ferdydurke, skolimowski);
 
-        Restaurant kinoteka = new Restaurant(1, "Kinoteka", "https://www.kinoteka.pl/img/logo.png");
-        Restaurant podBaranami = new Restaurant(2, "Kino pod Baranami", "http://www.festiwalfilmuniemego.pl/wp-content/uploads/2015/11/Kino-pod-Baranami.png");
-        Restaurant noweHoryzonty = new Restaurant(3, "Kino Nowe Horyzonty", "https://i2.wp.com/garretreza.pl/wp-content/uploads/2018/07/nh.jpg");
-        Restaurant zak = new Restaurant(4, "Kino Zak", "https://static2.s-trojmiasto.pl/zdj/c/n/19/2276/250x0/2276445.jpg");
+        Restaurant kebab = new Restaurant(1, "kebab pajda", "https://www.kinoteka.pl/img/logo.png");
+        Restaurant barMleczny = new Restaurant(2, "Bar mleczny Smakosz", "http://www.festiwalfilmuniemego.pl/wp-content/uploads/2015/11/Kino-pod-Baranami.png");
+        Restaurant pizzeria = new Restaurant(3, "Pizzeria u frediego", "https://i2.wp.com/garretreza.pl/wp-content/uploads/2018/07/nh.jpg");
+        Restaurant burgerownia = new Restaurant(4, "Burger z dużym kotletem", "https://static2.s-trojmiasto.pl/zdj/c/n/19/2276/250x0/2276445.jpg");
 
-        bind(kinoteka, wesele);
-        bind(noweHoryzonty, wesele);
-        bind(noweHoryzonty, wolyn);
-        bind(noweHoryzonty, polityka);
+        bind(kebab, wesele);
+        bind(pizzeria, wesele);
+        bind(pizzeria, wolyn);
+        bind(pizzeria, polityka);
 
-        bind(kinoteka, tatarak);
-        bind(zak, tatarak);
-        bind(zak, essential);
-        bind(podBaranami, essential);
-        bind(podBaranami, polityka);
+        bind(kebab, tatarak);
+        bind(burgerownia, tatarak);
+        bind(burgerownia, essential);
+        bind(barMleczny, essential);
+        bind(barMleczny, polityka);
 
         dishes.add(wolyn);
         dishes.add(wesele);
@@ -76,10 +76,10 @@ class SampleData {
         chefs.add(wajda);
         chefs.add(skolimowski);
 
-        restauracje.add(kinoteka);
-        restauracje.add(podBaranami);
-        restauracje.add(noweHoryzonty);
-        restauracje.add(zak);
+        restauracje.add(kebab);
+        restauracje.add(barMleczny);
+        restauracje.add(pizzeria);
+        restauracje.add(burgerownia);
 
     }
 

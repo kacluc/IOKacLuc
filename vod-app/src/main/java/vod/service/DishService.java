@@ -8,18 +8,18 @@ import java.util.List;
 public interface DishService {
 
 
-    List<Dish> getAllMovies();
+    List<Dish> getAllDishes();
 
-    List<Dish> getMoviesByDirector(Chef d);
+    List<Dish> getDishesByChef(Chef d);
 
-    Dish getMovieById(int id);
+    Dish getDishById(int id);
 
-    Dish addMovie(Dish m);
+    Dish addDish(Dish m);
 
 
     List<Chef> getAllDirectors();
 
-    Chef getDirectorById(int id);
+    Chef getChefById(int id);
 
-    Chef addDirector(Chef d);
+    Chef addChef(Chef d);
 }

@@ -1,6 +1,7 @@
 package vod.repository.mem;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import vod.model.Chef;
 import vod.model.Dish;
 import vod.repository.DishDao;
@@ -9,7 +10,7 @@ import vod.model.Restaurant;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Repository("dishDao")
 public class MemDishDao implements DishDao {
     @Override
     public List<Dish> findAll() {

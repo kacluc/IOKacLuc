@@ -15,4 +15,6 @@ public interface RestaurantService {
 
     List<Dish> getDishesInRestaurant(Restaurant c);
 
+    Restaurant addRestaurant(Restaurant restaurant);
+
 }

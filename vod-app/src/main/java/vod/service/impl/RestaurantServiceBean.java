@@ -2,6 +2,7 @@ package vod.service.impl;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import vod.model.Restaurant;
 import vod.model.Dish;
 import vod.repository.RestaurantDao;
@@ -11,7 +12,7 @@ import vod.service.RestaurantService;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Component
+@Service
 @Scope("prototype")
 public class RestaurantServiceBean implements RestaurantService {
 
@@ -36,6 +37,12 @@ public class RestaurantServiceBean implements RestaurantService {
     public List<Dish> getDishesInRestaurant(Restaurant c) {
         log.info("searching dishes served in restaurant " + c.getId());
         return dishDao.findByRestaurant(c);
+    }
+
+    @Override
+    public Restaurant addRestaurant(Restaurant restaurant) {
+        log.info("adding restaurant " + restaurant);
+        return restaurantDao.save(restaurant);
     }
 
     @Override

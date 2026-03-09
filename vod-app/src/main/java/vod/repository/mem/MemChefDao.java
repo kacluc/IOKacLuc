@@ -1,12 +1,13 @@
 package vod.repository.mem;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import vod.model.Chef;
 import vod.repository.ChefDao;
 
 import java.util.List;
 
-@Component
+@Repository("chefDao")
 public class MemChefDao implements ChefDao {
     @Override
     public List<Chef> findAll() {

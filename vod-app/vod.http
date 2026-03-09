@@ -1,0 +1,15 @@
+### GET all restaurants
+GET http://localhost:8080/webapi/restaurants
+
+### GET all restaurants with value
+GET http://localhost:8080/webapi/restaurants?phrase=abc
+custom-header: custom-value
+Cookie: some-cookie=some-value
+
+### get restaurant by id
+GET https://localhost:8080/webapi/restaurants/1
+Accept: application/xml
+
+### get restaurant by Dish
+GET https://localhost:8080/webapi/dishes/1/restaurants
+Accept: application/json
