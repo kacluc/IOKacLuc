@@ -1,6 +1,5 @@
 package vod.repository.mem;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import vod.model.Chef;
 import vod.model.Dish;
@@ -24,7 +23,7 @@ public class MemDishDao implements DishDao {
 
     @Override
     public List<Dish> findByChef(Chef d) {
-       return SampleData.dishes.stream().filter(m -> m.getDirector() == d).collect(Collectors.toList());
+       return SampleData.dishes.stream().filter(m -> m.getChef() == d).collect(Collectors.toList());
     }
 
     @Override

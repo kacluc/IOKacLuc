@@ -20,6 +20,26 @@ Content-Type: application/json
 Accept-Language: en
 
 {
-    "name": "restaurant",
+    "name": "abc",
     "logo": "https://s.tmimgcdn.com/scr/800x500/295300/modern-professional-business-logo-template_295305-original.jpg"
 }
+
+### Create new dish
+POST http://localhost:8080/webapi/dishes
+Content-Type: application/json
+
+{
+  "name": "IawdO",
+  "poster": "https://s.tmimgcdn.com/scr/800x500/295300/modern-professional-business-logo-template_295305-original.jpg",
+  "rating": 5.0,
+  "chefId": 3
+}
+
+### Get all dishes
+GET http://localhost:8080/webapi/dishes
+
+### Get dish by id
+GET http://localhost:8080/webapi/dishes/1
+
+### GET dishes served in restaurant
+GET http://localhost:8080/webapi/restaurants/1/dishes

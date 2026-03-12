@@ -1,5 +1,7 @@
 package vod.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ public class Chef {
     private int id;
     private String firstName;
     private String lastName;
+    @JsonIgnore
     private List<Dish> dishes = new ArrayList<>();//relacja 1 do wielu
 //listy zeby przey przełączniu na SpringDate nie było komplikacji
 //lista od seta różni się tym że są w niej powtórzenia oraz trzymamy kolejność wrzucania
@@ -45,15 +48,16 @@ public class Chef {
         this.lastName = lastName;
     }
 
-    public List<Dish> getMovies() {
+    @JsonIgnore
+    public List<Dish> getDishes() {
         return dishes;
     }
 
-    public void setMovies(List<Dish> dishes) {
+    public void setDishes(List<Dish> dishes) {
         this.dishes = dishes;
     }
 
-    public void addMovie(Dish m) {
+    public void addDishes(Dish m) {
         this.dishes.add(m);
     }
 

@@ -6,7 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import vod.model.Dish;
 import vod.model.Restaurant;
+import vod.service.DishService;
 import vod.service.RestaurantService;
 
 import java.util.Arrays;
@@ -17,9 +19,11 @@ import java.util.List;
 public class VodComponent implements CommandLineRunner, ApplicationListener<ContextRefreshedEvent> {
 
     private final RestaurantService restaurantService;
+    private final DishService dishService;
 
-    public VodComponent(RestaurantService restaurantService) {
+    public VodComponent(RestaurantService restaurantService, DishService dishService) {
         this.restaurantService = restaurantService;
+        this.dishService = dishService;
     }
 
     @PostConstruct
@@ -40,5 +44,7 @@ public class VodComponent implements CommandLineRunner, ApplicationListener<Cont
         List<Restaurant> restaurants = restaurantService.getAllRestaurants();
         log.info("{} restaurants found: ", restaurants.size());
         restaurants.forEach(restaurant -> log.info("{}", restaurant));
+        List<Dish> dishes = dishService.getAllDishes();
+        dishes.forEach(dish -> log.info("{}", dish));
     }
 }

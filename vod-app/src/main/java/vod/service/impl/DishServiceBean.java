@@ -37,17 +37,17 @@ public class DishServiceBean implements DishService {
     }
 
     public List<Dish> getAllDishes() {
-        log.info("searching all movies...");
+        log.info("searching all dishes...");
         return dishDao.findAll();
     }
 
     public List<Dish> getDishesByChef(Chef d) {
-        log.info("serching movies by diretor " + d.getId());
+        log.info("serching dishes by chef" + d.getId());
         return dishDao.findByChef(d);
     }
 
     public List<Dish> getMoviesInCinema(Restaurant c) {
-        log.info("searching movies played in cinema " + c.getId());
+        log.info("searching dishes served in restaurant " + c.getId());
         return dishDao.findByRestaurant(c);
     }
 

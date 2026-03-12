@@ -1,21 +1,24 @@
 package vod.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Dish {
 
     private int id;
-    private String title;
+    private String name;
     private String poster;//url
     private Chef chef;//relacja do rezysera - kolejny obiekt danych w uproszczeniu założenie że jeden film ma 1 reżysera
     private float rating;//rating
+    @JsonIgnore
     private List<Restaurant> restauracje = new ArrayList<>();
 //relacja wiele do wiele - bidirectional
 
-    public Dish(int id, String title, String poster, Chef chef, float rating) {
+    public Dish(int id, String name, String poster, Chef chef, float rating) {
         this.id = id;
-        this.title = title;
+        this.name = name;
         this.poster = poster;
         this.chef = chef;
         this.rating = rating;
@@ -32,12 +35,12 @@ public class Dish {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPoster() {
@@ -48,11 +51,11 @@ public class Dish {
         this.poster = poster;
     }
 
-    public Chef getDirector() {
+    public Chef getChef() {
         return chef;
     }
 
-    public void setDirector(Chef chef) {
+    public void setChef(Chef chef) {
         this.chef = chef;
     }
 
@@ -64,15 +67,16 @@ public class Dish {
         this.rating = rating;
     }
 
+    @JsonIgnore
     public List<Restaurant> getCinemas() {
         return restauracje;
     }
 
-    public void setCinemas(List<Restaurant> restauracje) {
+    public void setRestaurants(List<Restaurant> restauracje) {
         this.restauracje = restauracje;
     }
 
-    public void addCinema(Restaurant c) {
+    public void addRestaurant(Restaurant c) {
         this.restauracje.add(c);
     }
 
@@ -102,7 +106,7 @@ public class Dish {
     @Override
     public String toString() {
         return "Dish{" +
-                "title='" + title + '\'' +
+                "title='" + name + '\'' +
                 ", chef=" + chef +
                 ", rating=" + rating +
                 '}';

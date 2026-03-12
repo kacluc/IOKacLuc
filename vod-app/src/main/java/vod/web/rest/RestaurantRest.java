@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.LocaleResolver;
 import vod.model.Dish;
@@ -27,6 +28,12 @@ public class RestaurantRest {
     private final DishService dishService;
     private final MessageSource messageSource;
     private final LocaleResolver localeResolver;
+    private final RestaurantValidator restaurantValidator;
+
+/*    @InitBinder
+    void initBinder(WebDataBinder binder) {
+        binder.addValidators(restaurantValidator);
+    }*/
 
     @GetMapping("/restaurants")
     List<Restaurant> getRestaurants(@RequestParam(value = "phrase", required = false) String phrase,
@@ -62,7 +69,7 @@ public class RestaurantRest {
             return ResponseEntity.notFound().build();
         } else {
             List<Restaurant> restaurants = restaurantService.getRestaurantByDish(dish);
-            log.info("{} restaurants found with dish {}", restaurants.size(), dish.getTitle());
+            log.info("{} restaurants found with dish {}", restaurants.size(), dish.getName());
             return ResponseEntity.ok(restaurants);
         }
     }
@@ -76,7 +83,7 @@ public class RestaurantRest {
             String errorMessage = errors.getAllErrors().stream()
                     .map(oe -> messageSource.getMessage(oe.getCode(), new Object[0], locale))
                     .reduce("error:\n", (accu,oe)  -> accu + oe + "\n");
-            return ResponseEntity.badRequest().body(restaurant);
+            return ResponseEntity.badRequest().body(errorMessage);
         }
 
         restaurant = restaurantService.addRestaurant(restaurant);

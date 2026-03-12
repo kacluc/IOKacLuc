@@ -84,13 +84,13 @@ class SampleData {
     }
 
     private static void bind(Restaurant c, Dish m) {
-        c.addMovie(m);
-        m.addCinema(c);
+        c.addDish(m);
+        m.addRestaurant(c);
     }
 
     private static void bind(Dish m, Chef d) {
-        d.addMovie(m);
-        m.setDirector(d);
+        d.addDishes(m);
+        m.setChef(d);
     }
 
 }

@@ -14,6 +14,7 @@ public class Restaurant {
     @Size(min = 2, max = 20)
     private String name;
     private String logo; //url logo w przypadku UI będzie zaciągany dynamicznie
+    @JsonIgnore
     private List<Dish> dishes = new ArrayList<>();//struktura kolekcyjna związaną z granymi filmami, uproszczone
 //relacja wiele do wiele
     public Restaurant(int id, String name, String logo) {//konsturktor
@@ -58,7 +59,7 @@ public class Restaurant {
         this.dishes = dishes;
     }
 
-    public void addMovie(Dish m) {
+    public void addDish(Dish m) {
         this.dishes.add(m);
     }
 
