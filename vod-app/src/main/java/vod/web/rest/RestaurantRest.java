@@ -44,6 +44,11 @@ public class RestaurantRest {
         log.info("phrase: {}", phrase);
         log.info("custom-header: {}", customHeader);
         log.info("some-cookie: {}", someCookie);
+
+        if(phrase != null && phrase.equals("foo")) {
+            throw new IllegalArgumentException("Foo!");
+        }
+
         List<Restaurant> restaurants = restaurantService.getAllRestaurants();
         log.info("{} restaurants found: ", restaurants.size());
         return restaurants;

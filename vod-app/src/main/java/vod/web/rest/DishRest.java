@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -61,8 +63,13 @@ public class DishRest {
     }
 
     @PostMapping("dishes")
-    ResponseEntity<?> addDish(@RequestBody DishDTO dishDTO) {
+    ResponseEntity<?> addDish(@Validated @RequestBody DishDTO dishDTO, Errors errors) {
         log.info("about to add dish: {}", dishDTO);
+
+        if(errors.hasErrors()) {
+            return ResponseEntity.badRequest().build();
+        }
+
         Dish dish = new Dish();
         dish.setName(dishDTO.getName());
         dish.setPoster(dishDTO.getPoster());
