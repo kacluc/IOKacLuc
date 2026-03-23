@@ -29,7 +29,7 @@ public class RestaurantServiceBean implements RestaurantService {
 
     @Override
     public Restaurant getRestaurantById(int id) {
-        log.info("searching cinema by id " + id);
+        log.info("searching restaurant by id " + id);
         return restaurantDao.findById(id);
     }
 

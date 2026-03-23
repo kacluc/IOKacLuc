@@ -1,19 +1,31 @@
 package vod.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "dish")
 public class Dish {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String poster;//url
+    @ManyToOne
+    @JoinColumn(name = "chef_id")
     private Chef chef;//relacja do rezysera - kolejny obiekt danych w uproszczeniu założenie że jeden film ma 1 reżysera
     private float rating;//rating
-    @JsonIgnore
-    private List<Restaurant> restauracje = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "dish_restaurant",
+            joinColumns = @JoinColumn(name = "dish_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
+    )
+    private List<Restaurant> restaurants = new ArrayList<>();
 //relacja wiele do wiele - bidirectional
 
     public Dish(int id, String name, String poster, Chef chef, float rating) {
@@ -69,15 +81,15 @@ public class Dish {
 
     @JsonIgnore
     public List<Restaurant> getCinemas() {
-        return restauracje;
+        return restaurants;
     }
 
     public void setRestaurants(List<Restaurant> restauracje) {
-        this.restauracje = restauracje;
+        this.restaurants = restauracje;
     }
 
     public void addRestaurant(Restaurant c) {
-        this.restauracje.add(c);
+        this.restaurants.add(c);
     }
 
 

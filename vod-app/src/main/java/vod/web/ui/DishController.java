@@ -41,6 +41,6 @@ public class DishController {
             model.addAttribute("dishes", dishes);
             model.addAttribute("name", "dishes");
         }
-        return "moviesView";
+        return "dishesView";
     }
 }
