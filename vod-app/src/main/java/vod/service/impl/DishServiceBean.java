@@ -1,8 +1,14 @@
 package vod.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import vod.model.Chef;
 import vod.model.Dish;
 import vod.model.Restaurant;
@@ -15,20 +21,22 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Service
+@RequiredArgsConstructor
 public class DishServiceBean implements DishService {
 
     private static final Logger log = Logger.getLogger(DishService.class.getName());
 
     //@Autowired
     private ChefDao chefDao;
+    private PlatformTransactionManager transactionManager;
+    private RestaurantDao restaurantDao;
+    private DishDao dishDao;
+
 
     @Autowired
     public void setChefDao(ChefDao chefDao) {
         this.chefDao = chefDao;
     }
-
-    private RestaurantDao restaurantDao;
-    private DishDao dishDao;
 
     public DishServiceBean(ChefDao chefDao, RestaurantDao restaurantDao, DishDao dishDao) {
         this.chefDao = chefDao;
@@ -81,9 +89,21 @@ public class DishServiceBean implements DishService {
         return chefDao.findById(id);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Dish addDish(Dish m) {
         log.info("about to add movie " + m);
+        TransactionStatus ts = transactionManager.getTransaction(new DefaultTransactionDefinition());
+        try{
+            m = dishDao.add(m);
+            if(m.getName().equals("Apokalipsa")){
+                throw new RuntimeException("not yet!");
+            }
+        }
+        catch(Exception e){
+            transactionManager.rollback(ts);
+            throw e;
+        }
         return dishDao.add(m);
     }
 
@@ -93,4 +113,8 @@ public class DishServiceBean implements DishService {
         return chefDao.add(d);
     }
 
+    @Autowired
+    public void setTransactionManager(DataSourceTransactionManager transactionManager) {
+        this.transactionManager = transactionManager;
+    }
 }

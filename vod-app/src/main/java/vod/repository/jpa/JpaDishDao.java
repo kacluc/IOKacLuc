@@ -2,7 +2,6 @@ package vod.repository.jpa;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import vod.model.Chef;
 import vod.model.Dish;
@@ -12,7 +11,6 @@ import vod.repository.DishDao;
 import java.util.List;
 
 @Repository
-@Primary
 public class JpaDishDao implements DishDao {
     @PersistenceContext
     private EntityManager entityManager;
